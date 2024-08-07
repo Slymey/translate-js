@@ -6,7 +6,7 @@
         <title class="translatable" translation-text="$title$" translation-value="num:2">Title</title>
         <script> 
             lang=[];
-            langBase;
+            langBase = null;
             function loadFile(filePath) {
                 var result = null;
                 var xmlhttp = new XMLHttpRequest();
@@ -18,32 +18,71 @@
                 return result;
             }
             
-            langBase= JSON.parse(loadFile("langBase.json")); 
+            langBase = JSON.parse(loadFile("langBase.json")); 
             lang["en"] = JSON.parse(loadFile("lang_en.json"));
             lang["es"] = JSON.parse(loadFile("lang_es.json"));
-              
-            translate(document, lang["en"], langBase);
+
+            function switchLang(id){
+                translate(document, lang[id], langBase);
+            }
         </script>  
         <style>
             *{
                 margin:0;
                 padding:0;
             }
-            h1{
-                line-height:5rem;
-                font-size:3rem;
-                text-align: center;
-                height: 5rem;
-                color: #000000;
+            body{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
+            h1{
+                li
+                display:flex;
+                justify-content: center;
+                min-height: min-content;
+                flex-direction: row;
+                /* width: fit-content; */
             #main{
                 display:flex;
                 justify-content: center;
                 min-height: min-content;
+                flex-direction: row;
+                /* width: fit-content; */
             }
-            img{
-                height: 50%;
-                width: 50%;
+            .switch-toggle {
+                --hrt:2px;
+                --hgt:16px;
+                background: #b7b7b7;
+                border-radius: var(--hrt);
+                width: fit-content;
+                display: inline-flex;
+                right: 0;
+                /*position: absolute;*/
+                height:calc(var(--hgt)*2);
+            }
+            .switch-toggle input {
+                display: none;
+                opacity: 0;
+            }
+            .switch-toggle input + label {
+                padding: var(--hgt) calc(var(--hgt)/2 + 8px);
+                color: #fff;
+                cursor: pointer;
+                line-height: 0;
+                font-family: "Twemoji Country Flags", "Helvetica", "Comic Sans", serif;
+            }
+            .switch-toggle input:checked + label {
+                background: #292929;
+            }
+            .switch-toggle label:last-of-type {
+                border-end-end-radius: var(--hrt);
+                border-start-end-radius: var(--hrt);
+            }
+            .switch-toggle label:first-of-type {
+                border-start-start-radius: var(--hrt);
+                border-end-start-radius: var(--hrt);
             }
         </style>
     </head>
@@ -51,8 +90,16 @@
         <div id="flag-title" ><h1 class="translatable" translation-text="$flag-title$">The flag</h1></div>
         <div id="main">
             <div if="flagdiv" class="translatable" translation-id="flag">
-                
             </div>
         </div>
+        <div class="switch-toggle switch-3 switch-candy">
+            <input id="en" name="state-d" type="radio" checked="">
+            <label for="en" onclick="switchLang('en');">EN</label>
+            <input id="es" name="state-d" type="radio">
+            <label for="es" onclick="switchLang('es');">ES</label>
+        </div>
+        <script>
+            translate(document, lang["en"], langBase);
+        </script>
     </body>
 </html>

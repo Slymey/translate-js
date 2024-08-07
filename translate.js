@@ -100,8 +100,8 @@ function translate(ell, lang, base=null, mandatory=null, optional=null, maxdepth
         }
         if(txt==undefined)txt = all[i].getAttribute("translation-text");
         var token = parseToken(txt, lang);
-        var ell = parseVal(all[i], lang);
-        var val = getEllValue(token, lang, mandatory, ell, optional);
+        var attr = parseVal(all[i], lang);
+        var val = getEllValue(token, lang, mandatory, attr, optional);
         all[i].innerHTML=val;
     }
 }
