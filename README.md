@@ -1,5 +1,5 @@
 # translate-js
-Very simple js library for translating a web page
+Very simple js library for translating a web page.
 
 It is recomended to download and serve the library from your own server.
 
@@ -9,8 +9,9 @@ Include file into your site
 <script src="https://slymey.github.io/translate-js/translate.js"></script>
 ```
 
+
 A translatable element has the class "**translatable**" and either a **translation-text** or a **translation-id** attribute.<br>
-**translation-text**: text that will be inserted into the element, dollar signs (**$**) specifi translatable text and percent signs (**%**) specify values that are inserted into the translated text.<br>
+**translation-text**: text that will be inserted into the element, dollar signs (**$**) specify translatable text and percent signs (**%**) specify values that are inserted into the translated text. To insert either character raw just double it ($$ / %%).<br>
 **translation-value**: comma seperated list of **name:value** pairs of values that will be inserted into the text.<br>
 **translation-id**: specifies the id of of the **translation-text** in the base file.
 ```html
@@ -33,20 +34,23 @@ Example of baseLang.json
 }
 ```
 
-Translate your site by simply calling **translate(...)**.<br>
+
+Translate your site by simply calling **translate(...)**. Make sure to parse your json with **JSON.parse(...)**.<br>
 ```javascript
 translate(document, language_obj);
 //or
 translate(document, language_obj, base_obj);
 ```
 
-You can olso specify values to be inserted during tranlation.<br>
-Mandatory values are allways inserted first, then values specified in the **translation-value**, and lastly optional values. If a value is not found it inserts nothing.
+
+You can olso specify values to be inserted during translation.<br>
+Mandatory values are always inserted first, then values specified in the **translation-value** attribute, and lastly optional values. If a value is not found it inserts nothing.
 ```javascript
 translate(document, language_obj, base_obj, mandatory_values);
 //or
 translate(document, language_obj, base_obj, mandatory_values, optional_values);
 ```
+
 
 If you have your translation recurse quite deeply you can change the maximum depth to something other than 32.
 ```javascript
