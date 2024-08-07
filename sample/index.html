@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title class="translatable" translation-text="$title$" translation-value="num:2">Title</title>
-  </head>
+  <meta charset="UTF-8">
+  <script src="script.js"></script>
+  <script src="https://slymey.github.io/translate-js/translate.js"></script>
+  <link rel="import" href="lang_es.json">
+  <link rel="import" href="lang_en.json">
+	<title class="translatable" translation-text="$title$" translation-value="num:2">Title</title>
+  <script> 
+    lang=[];
+    function loadLang(id, lang){
+        var url = "js/lang_"+id+".json";
+        var par = document.createElement("object");
+        par.setAttribute('data', url);
+        para.appendChild(par);
+        par.onload = function() {
+            var doc = par.contentDocument || par.contentWindow.document;
+            var data = doc.body.childNodes[0].innerHTML;
+            lang[id] = JSON.parse(data);
+        };
+    }
+    loadLang("en", lang);
+    loadLang("es", lang);
+    translate(document, lang["en"]);
+      
+  </script>  
+    
 </html>
