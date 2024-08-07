@@ -12,7 +12,8 @@
         var url = "js/lang_"+id+".json";
         var par = document.createElement("object");
         par.setAttribute('data', url);
-        para.appendChild(par);
+        par.setAttribute('style', "visibility:none");
+        document.appendChild(par);
         par.onload = function() {
             var doc = par.contentDocument || par.contentWindow.document;
             var data = doc.body.childNodes[0].innerHTML;
