@@ -12,7 +12,7 @@
         var par = document.createElement("object");
         par.setAttribute('data', url);
         par.setAttribute('style', "visibility:none");
-        document.appendChild(par);
+        document.querySelector("body").appendChild(par);
         par.onload = function() {
             var doc = par.contentDocument || par.contentWindow.document;
             var data = doc.body.childNodes[0].innerHTML;
