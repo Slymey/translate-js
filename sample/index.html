@@ -25,7 +25,23 @@
             function switchLang(id){
                 translate(document, lang[id], langBase);
             }
-        </script>  
+        </script>
+    </head>
+    <body>
+        <div id="flag-title" ><h1 class="translatable" translation-text="$flag-title$">The flag</h1></div>
+        <div id="main">
+            <div if="flagdiv" class="translatable" translation-id="flag">
+            </div>
+        </div>
+        <div class="switch-toggle switch-3 switch-candy">
+            <input id="en" name="state-d" type="radio" checked="">
+            <label for="en" onclick="switchLang('en');">EN</label>
+            <input id="es" name="state-d" type="radio">
+            <label for="es" onclick="switchLang('es');">ES</label>
+        </div>
+        <script>
+            translate(document, lang["en"], langBase);
+        </script>
         <style>
             *{
                 margin:0;
@@ -82,21 +98,5 @@
                 border-end-start-radius: var(--hrt);
             }
         </style>
-    </head>
-    <body>
-        <div id="flag-title" ><h1 class="translatable" translation-text="$flag-title$">The flag</h1></div>
-        <div id="main">
-            <div if="flagdiv" class="translatable" translation-id="flag">
-            </div>
-        </div>
-        <div class="switch-toggle switch-3 switch-candy">
-            <input id="en" name="state-d" type="radio" checked="">
-            <label for="en" onclick="switchLang('en');">EN</label>
-            <input id="es" name="state-d" type="radio">
-            <label for="es" onclick="switchLang('es');">ES</label>
-        </div>
-        <script>
-            translate(document, lang["en"], langBase);
-        </script>
     </body>
 </html>
