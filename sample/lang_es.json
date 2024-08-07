@@ -1,3 +1,5 @@
 {
-    "title":"Título %num%"
+    "title":"Título %num%",
+    "flag-title":"This is the Spanish flag",
+    "flag":"sp-flag.gif"
 }

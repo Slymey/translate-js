@@ -1,28 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <meta charset="UTF-8">
-  <script src="https://slymey.github.io/translate-js/translate.js"></script>
-  <link rel="import" href="lang_es.json">
-  <link rel="import" href="lang_en.json">
-	<title class="translatable" translation-text="$title$" translation-value="num:2">Title</title>
-  <script> 
-    lang=[];
-    function loadLang(id, lang){
-        var url = "js/lang_"+id+".json";
-        var par = document.createElement("object");
-        par.setAttribute('data', url);
-        par.setAttribute('style', "visibility:none");
-        document.querySelector("body").appendChild(par);
-        par.onload = function() {
-            var doc = par.contentDocument || par.contentWindow.document;
-            var data = doc.body.childNodes[0].innerHTML;
-            lang[id] = JSON.parse(data);
-        };
-    }
-    loadLang("en", lang);
-    loadLang("es", lang);
-    translate(document, lang["en"]);
-      
-  </script>  
-    
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://slymey.github.io/translate-js/translate.js"></script>
+        <title class="translatable" translation-text="$title$" translation-value="num:2">Title</title>
+        <script> 
+            lang=[];
+            langBase;
+            function loadFile(filePath) {
+                var result = null;
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", filePath, false);
+                xmlhttp.send();
+                if (xmlhttp.status==200) {
+                    result = xmlhttp.responseText;
+                }
+                return result;
+            }
+            
+            langBase= JSON.parse(loadFile("langBase.json")); 
+            lang["en"] = JSON.parse(loadFile("lang_en.json"));
+            lang["es"] = JSON.parse(loadFile("lang_es.json"));
+              
+            translate(document, lang["en"], langBase);
+        </script>  
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            h1{
+                line-height:5rem;
+                font-size:3rem;
+                text-align: center;
+                height: 5rem;
+                color: #000000;
+            }
+            #main{
+                display:flex;
+                justify-content: center;
+                min-height: min-content;
+            }
+            img{
+                height: 50%;
+                width: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="flag-title" ><h1 class="translatable" translation-text="$flag-title$">The flag</h1></div>
+        <div id="main">
+            <div if="flagdiv" class="translatable" translation-id="flag">
+
+            </div>
+        </div>
+    </body>
 </html>
