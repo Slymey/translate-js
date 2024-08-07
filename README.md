@@ -8,7 +8,7 @@ Include file into your site
 ```html
 <script src="https://slymey.github.io/translate-js/translate.js"></script>
 ```
-
+<br>
 
 A translatable element has the class "**translatable**" and either a **translation-text** or a **translation-id** attribute.<br>
 **translation-text**: text that will be inserted into the element, dollar signs (**$**) specify translatable text and percent signs (**%**) specify values that are inserted into the translated text. To insert either character raw just double it ($$ / %%).<br>
@@ -33,7 +33,7 @@ Example of baseLang.json
     "flag":"<img id='flag' src='https://www.worldometers.info/img/flags/$flag$'>"
 }
 ```
-
+<br>
 
 Translate your site by simply calling **translate(...)**. Make sure to parse your json with **JSON.parse(...)**.<br>
 ```javascript
@@ -41,7 +41,7 @@ translate(document, language_obj);
 //or
 translate(document, language_obj, base_obj);
 ```
-
+<br>
 
 You can olso specify values to be inserted during translation.<br>
 Mandatory values are always inserted first, then values specified in the **translation-value** attribute, and lastly optional values. If a value is not found it inserts nothing.
@@ -50,7 +50,7 @@ translate(document, language_obj, base_obj, mandatory_values);
 //or
 translate(document, language_obj, base_obj, mandatory_values, optional_values);
 ```
-
+<br>
 
 If you have your translation recurse quite deeply you can change the maximum depth to something other than 32.
 ```javascript
