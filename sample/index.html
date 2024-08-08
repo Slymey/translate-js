@@ -7,6 +7,13 @@
         <script> 
             lang=[];
             langBase = null;
+            mp = (window.trustedTypes && trustedTypes.createPolicy)//for if you have trusted types enabled
+                    ?trustedTypes.createPolicy('some', { 
+                        createHTML: string => string,
+                        createScript: string => string,
+                        createScriptURL: string => string
+                    })
+                    :null;
             function loadFile(filePath) {
                 var result = null;
                 var xmlhttp = new XMLHttpRequest();
@@ -23,7 +30,7 @@
             lang["es"] = JSON.parse(loadFile("lang_es.json"));
 
             function switchLang(id){
-                translate(document, lang[id], langBase);
+                translate(document, lang[id], langBase, null, null, mp);
             }
         </script>
     </head>
@@ -40,7 +47,7 @@
             <label for="es" onclick="switchLang('es');">ES</label>
         </div>
         <script>
-            translate(document, lang["en"], langBase);
+            translate(document, lang["en"], langBase, null, null, mp);
         </script>
         <style>
             *{

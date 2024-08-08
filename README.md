@@ -52,7 +52,13 @@ translate(document, language_obj, base_obj, mandatory_values, optional_values);
 ```
 <br>
 
+If you enabled trusted type policy in your response header make sure to whitelist **translate-default** as an allowed policy name or provide your own policy via type_policy.
+```javascript
+translate(document, language_obj, base_obj, mandatory_values, optional_values, type_policy);
+```
+<br>
+
 If you have your translation recurse quite deeply you can change the maximum depth to something other than 32.
 ```javascript
-translate(document, language_obj, base_obj, mandatory_values, optional_values, max_depth);
+translate(document, language_obj, base_obj, mandatory_values, optional_values, type_policy, max_depth);
 ```
