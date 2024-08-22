@@ -115,7 +115,7 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
     }
 
     for(var i = 0; i < all.length; i++){
-        var txt = undefined;;
+        var txt = undefined;
         if(base != null){
             var id = all[i].getAttribute("translation-id");
             txt = base[id];
