@@ -1,7 +1,7 @@
 const translateEscapePolicy = (() => {
         try{ 
             return  (window.trustedTypes && trustedTypes.createPolicy)
-                    ?trustedTypes.createPolicy('translate-deafult', {
+                    ?trustedTypes.createPolicy('translate-default', {
                             createHTML: s => s,
                             createScript: s => s,
                             createScriptURL: s => s
@@ -73,10 +73,10 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
                     if(val.length > 1){
                         var name = val.substring(1);
                         var value = undefined;
-                        if(mandatory != null) value = mandatory[name];
-                        if(value == undefined && attribute != null) value = attribute[name];
-                        if(value == undefined && optional != null) value = optional[name];
-                        if(value == undefined) value = "";
+                        if(mandatory != null){ value = mandatory[name];
+                        }else if(attribute != null){ value = attribute[name];
+                        }else if(optional != null){ value = optional[name];
+                        }else{ value = ""; }
                         out += value;
                         hadVal = true;
                     }else{
@@ -99,9 +99,9 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
     function managePolicy(value, policy, defaultPolicy){
         var trustedText;
         if(policy != null){
-            trustedText = policy.createHTML(val);
+            trustedText = policy.createHTML(value);
         }else if(defaultPolicy != undefined){
-            trustedText = defaultPolicy.createHTML(val);
+            trustedText = defaultPolicy.createHTML(value);
         }else{
             trustedText = value;
         }
