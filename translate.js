@@ -73,10 +73,10 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
                     if(val.length > 1){
                         var name = val.substring(1);
                         var value = undefined;
-                        if(mandatory != null){ value = mandatory[name];
-                        }else if(attribute != null){ value = attribute[name];
-                        }else if(optional != null){ value = optional[name];
-                        }else{ value = ""; }
+                        if(mandatory != null) value = mandatory[name];
+                        if(value == undefined && attribute != null) value = attribute[name];
+                        if(value == undefined && optional != null) value = optional[name];
+                        if(value == undefined) value = "";
                         out += value;
                         hadVal = true;
                     }else{
