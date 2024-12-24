@@ -21,13 +21,13 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
                     continue;
                 }else if(c == "$"){
                     if(token.length > 1){
-                        if(depth > maxdepth){
-                            out += lang[token.substring(1)];
-                        }else{
+                        if(depth <= maxdepth){
                             out += parseToken(lang[token.substring(1)], lang, depth + 1);
+                        }else{
+                            out += lang[token.substring(1)];
                         }
                     }else{
-                        out += "$";
+                        out += "$$";
                     }
                     token = "";
                     continue;
@@ -38,7 +38,7 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
                 out += c;
             }
         }
-        return out;
+        return out.replace(/\$\$/, "$");
     }
     function parseVal(ell, lang){
         var trval = ell.getAttribute("translation-value");
@@ -65,7 +65,7 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
         var hadVal = false;
         for(var i = 0; i < string.length; i++){
             var c = string.charAt(i);
-            if((c == '%' || val != "")){
+            if(c == '%' || val != ""){
                 if(val == ""){
                     val = "%";
                     continue;
@@ -80,7 +80,7 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
                         out += value;
                         hadVal = true;
                     }else{
-                        out += "%";
+                        out += "%%";
                     }
                     val = "";
                     continue;
@@ -92,9 +92,9 @@ function translate(ell, lang, base = null, mandatory = null, optional = null, es
             }
         }
         if(hadVal && depth <= maxdepth){
-            out = getEllValue(string, lang, mandatory, attribute, optional, depth + 1);
+            out = getEllValue(out, lang, mandatory, attribute, optional, depth + 1);
         }
-        return out;
+        return out.replace(/%%/, "%");
     }
     function managePolicy(value, policy, defaultPolicy){
         var trustedText;
