@@ -58,7 +58,8 @@ translate(document, language_obj, base_obj, mandatory_values, optional_values, t
 ```
 <br>
 
-If you have your translation recurse quite deeply you can change the maximum depth to something other than 32.
+If you have your translation recurse quite deeply you can change the maximum depth to something other than 32.<br>
+To disable recursion set the maximum depth to a negative number.
 ```javascript
 translate(document, language_obj, base_obj, mandatory_values, optional_values, type_policy, max_depth);
 ```
